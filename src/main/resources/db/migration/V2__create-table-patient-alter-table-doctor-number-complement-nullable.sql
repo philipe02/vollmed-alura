@@ -1,19 +1,19 @@
-CREATE TABLE PATIENT(
-    ID BIGINT NOT NULL AUTO_INCREMENT,
-    NAME VARCHAR(100) NOT NULL,
-    EMAIL VARCHAR(100) NOT NULL UNIQUE,
-    PHONE VARCHAR(100) NOT NULL,
-    CPF VARCHAR(100) NOT NULL UNIQUE,
-    STREET VARCHAR(100) NOT NULL,
-    NUMBER VARCHAR(100),
-    COMPLEMENT VARCHAR(100),
-    NEIGHBORHOOD VARCHAR(100) NOT NULL,
-    CITY VARCHAR(100) NOT NULL,
-    STATE VARCHAR(100) NOT NULL,
-    ZIPCODE VARCHAR(100) NOT NULL,
-    PRIMARY KEY (ID)
+create table patient(
+    id bigint not null auto_increment,
+    name varchar(100) not null,
+    email varchar(100) not null unique,
+    phone varchar(100) not null,
+    cpf varchar(100) not null unique,
+    street varchar(100) not null,
+    number varchar(100),
+    complement varchar(100),
+    neighborhood varchar(100) not null,
+    city varchar(100) not null,
+    state varchar(100) not null,
+    zipcode varchar(100) not null,
+    primary key (id)
 );
 
-ALTER TABLE DOCTOR
-MODIFY COLUMN NUMBER VARCHAR(100) NULL,
-MODIFY COLUMN COMPLEMENT VARCHAR(100) NULL;
+alter table doctor
+modify column number varchar(100) null,
+modify column complement varchar(100) null;

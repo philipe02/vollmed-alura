@@ -7,33 +7,21 @@ import med.voll.api.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class DoctorService {
+  private final DoctorRepository doctorRepository;
 
-    @Autowired
-    private DoctorRepository doctorRepository;
+  private final DoctorMapper doctorMapper;
 
-    public Doctor save(DoctorDTO doctor) {
-        return doctorRepository.save(DoctorMapper.INSTANCE.toModel(doctor));
-    }
+  @Autowired
+  public DoctorService(DoctorRepository doctorRepository, DoctorMapper doctorMapper) {
+    this.doctorRepository = doctorRepository;
+    this.doctorMapper = doctorMapper;
+  }
 
-    public Doctor update(DoctorDTO doctor) {
-        Doctor doctorModel = doctorRepository.findByEmail(doctor.email());
-        return doctorRepository.save(DoctorMapper.INSTANCE.toModel(doctor, doctorModel));
-    }
-
-    public void delete(Long id) {
-        doctorRepository.findById(id).ifPresent(doctorRepository::delete);
-    }
-
-    public List<DoctorDTO> list() {
-        return doctorRepository.findAll().stream().map(DoctorMapper.INSTANCE::toDTO).toList();
-    }
-
-    public DoctorDTO findById(Long id) {
-        return doctorRepository.findById(id).map(DoctorMapper.INSTANCE::toDTO).orElse(null);
-    }
+  public Doctor save(DoctorDTO doctor) {
+    Doctor doctorModel = doctorMapper.toModel(doctor);
+    return doctorRepository.save(doctorModel);
+  }
 }
 

@@ -1,8 +1,8 @@
 package med.voll.api.enums;
 
 public enum Specialty {
-    ORTHOPEDIST,
-    CARDIOLOGIST,
-    GYNECOLOGIST,
-    DERMATOLOGIST;
+  ORTHOPEDIST,
+  CARDIOLOGIST,
+  GYNECOLOGIST,
+  DERMATOLOGIST
 }

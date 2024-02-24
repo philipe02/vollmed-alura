@@ -3,15 +3,15 @@ package med.voll.api.mapper;
 import med.voll.api.dto.DoctorDTO;
 import med.voll.api.model.Doctor;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(
+        componentModel = "spring",
+        uses = {AddressMapper.class}
+)
 public interface DoctorMapper {
-    DoctorMapper INSTANCE = Mappers.getMapper(DoctorMapper.class);
+  @Mapping(target = "id", ignore = true)
+  Doctor toModel(DoctorDTO doctorDTO);
 
-    Doctor toModel(DoctorDTO doctorDTO);
-
-    Doctor toModel(DoctorDTO doctorDTO, Doctor doctor);
-
-    DoctorDTO toDTO(Doctor doctor);
+  DoctorDTO toDTO(Doctor doctor);
 }

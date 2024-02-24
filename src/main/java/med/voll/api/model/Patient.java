@@ -1,40 +1,28 @@
 package med.voll.api.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-import med.voll.api.enums.Specialty;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Table(name = "doctor")
-@Entity(name = "Doctor")
+@Table(name = "patient")
+@Entity(name = "Patient")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Doctor {
+public class Patient {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column
   private Long id;
-  @Basic
-  @Column
-  private String name;
-  @Basic
-  @Column
-  private String email;
-  @Basic
-  @Column
-  private String phone;
-  @Basic
-  @Column
-  private String crm;
 
-  @Enumerated(EnumType.STRING)
-  @Column
-  private Specialty specialty;
+  private String name;
+  private String email;
+  private String phone;
+  private String cpf;
 
   @Embedded
   private Address address;
-
 }
