@@ -14,25 +14,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
-  @Basic
-  @Column
-  private String street;
-  @Basic
-  @Column
-  private String number;
-  @Basic
-  @Column
-  private String complement;
-  @Basic
-  @Column
-  private String neighborhood;
-  @Basic
-  @Column
-  private String city;
-  @Basic
-  @Column
-  private String state;
-  @Basic
-  @Column
-  private String zipcode;
+    @Basic
+    private String street;
+    @Basic
+    private String number;
+    @Basic
+    private String complement;
+    @Basic
+    private String neighborhood;
+    @Basic
+    private String city;
+    @Basic
+    private String state;
+    @Basic
+    private String zipcode;
 }

@@ -1,5 +1,6 @@
 package med.voll.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import med.voll.api.enums.Specialty;
@@ -13,28 +14,25 @@ import med.voll.api.enums.Specialty;
 @EqualsAndHashCode(of = "id")
 public class Doctor {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column
-  private Long id;
-  @Basic
-  @Column
-  private String name;
-  @Basic
-  @Column
-  private String email;
-  @Basic
-  @Column
-  private String phone;
-  @Basic
-  @Column
-  private String crm;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Basic
+    private String name;
+    @Basic
+    private String email;
+    @Basic
+    private String phone;
+    @Basic
+    private String crm;
 
-  @Enumerated(EnumType.STRING)
-  @Column
-  private Specialty specialty;
+    @Enumerated(EnumType.STRING)
+    private Specialty specialty;
 
-  @Embedded
-  private Address address;
+    @Embedded
+    private Address address;
 
+    @OneToOne(mappedBy = "doctor")
+    @JsonIgnore
+    private ApprovedDoctor approved_doctor;
 }
