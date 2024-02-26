@@ -3,18 +3,17 @@ package med.voll.api.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import med.voll.api.enums.Specialty;
 
 import java.util.Set;
 
-@Table(name = "doctor")
-@Entity(name = "Doctor")
+@Table(name = "hospital")
+@Entity(name = "Hospital")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Doctor {
+public class Hospital {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,16 +21,14 @@ public class Doctor {
   private String name;
   private String email;
   private String phone;
-  private String crm;
-  @Enumerated(EnumType.STRING)
-  private Specialty specialty;
   @Embedded
   private Address address;
-  @OneToOne(mappedBy = "doctor")
-//  @JsonIgnore
-  private ApprovedDoctor approved_doctor;
-//  @ManyToMany(mappedBy = "doctors")
-//  @JsonIgnore
-//  private Set<Hospital> hospitals;
-
+  @ManyToMany
+  @JoinTable(
+          name = "hospital_doctor",
+          joinColumns = @JoinColumn(name = "hospital_id"),
+          inverseJoinColumns = @JoinColumn(name = "doctor_id")
+  )
+  @JsonIgnore
+  private Set<Doctor> doctors;
 }
