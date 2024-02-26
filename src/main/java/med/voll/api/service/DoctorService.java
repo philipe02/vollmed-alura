@@ -53,8 +53,7 @@ public class DoctorService {
     public List<DoctorDTO> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
 
-        //return doctorRepository.findAll(pageable)
-        return doctorRepository.findAllNotApprovedDoctors()
+        return doctorRepository.findAll(pageable)
                                .stream()
                                .map(doctorMapper::toDTO)
                                .toList();

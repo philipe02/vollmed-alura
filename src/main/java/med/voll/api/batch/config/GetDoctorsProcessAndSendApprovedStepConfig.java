@@ -35,7 +35,7 @@ public class GetDoctorsProcessAndSendApprovedStepConfig {
     @Bean
     public Step getDoctorsProcessAndSendApprovedStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new StepBuilder("getDoctorsProcessAndSendApprovedStep", jobRepository)
-                .<List<Doctor>, List<DoctorDTO>>chunk(1, transactionManager)
+                .<List<Doctor>, List<DoctorDTO>>chunk(10, transactionManager)
                 .reader(doctorReader())
                 .processor(processData())
                 .writer(sendToAPI())
